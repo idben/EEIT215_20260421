@@ -1,26 +1,29 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { ref, computed } from "vue";
+import { useUserStore } from "./user";
 
 
 export const useCartStore = defineStore("cart", () => {
     // 在這定義狀態、計算屬性和操作方法
+    const userStore = useUserStore();
+    const { isLogin, user } = storeToRefs(userStore)
 
-    const user = {
-        id: 33445566,
-        name: "Ben Chen",
-        email: "idben.chen@gmail.com"
-    }
+    // const user = {
+    //     id: 33445566,
+    //     name: "Ben Chen",
+    //     email: "idben.chen@gmail.com"
+    // }
 
-    console.log(user.id);
-    console.log(user.name);
+    // console.log(user.id);
+    // console.log(user.name);
 
     // const id = user.id
     // const name = user.name
 
     // 物件的解構賦值, 等同上面的寫法
-    const { id, name } = user;
-    console.log(id);
-    console.log(name);
+    // const { id, name } = user;
+    // console.log(id);
+    // console.log(name);
 
 
 
