@@ -8,6 +8,9 @@ export const useCartStore = defineStore("cart", () => {
     const userStore = useUserStore();
     const { isLogin, user } = storeToRefs(userStore)
 
+    const discount = computed(() => isLogin ? 0.9 : 1)
+
+
     // const user = {
     //     id: 33445566,
     //     name: "Ben Chen",
@@ -24,6 +27,7 @@ export const useCartStore = defineStore("cart", () => {
     // const { id, name } = user;
     // console.log(id);
     // console.log(name);
+
 
 
 
@@ -59,6 +63,13 @@ export const useCartStore = defineStore("cart", () => {
         return items.value.reduce((sum, item) => {
             return sum + item.quantity * item.price
         }, 0);
+    });
+
+    const subTotal = computed(() => {
+        const money = items.value.reduce((sum, item) => {
+            return sum + item.quantity * item.price
+        }, 0);
+        return Math.round(money * discount.value)
     });
 
     const isEmpty = computed(() => items.value.length === 0)
@@ -97,5 +108,5 @@ export const useCartStore = defineStore("cart", () => {
     }
 
 
-    return { items, totalItems, totalMoney, isEmpty, clearCart, addItem, removeItem, increaseQuantity, decreaseQuantity }
+    return { items, totalItems, totalMoney, subTotal, isEmpty, clearCart, addItem, removeItem, increaseQuantity, decreaseQuantity }
 });

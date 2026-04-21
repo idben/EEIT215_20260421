@@ -1,16 +1,23 @@
 <script setup>
 import { useCartStore } from '@/stores/cart';
 import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/stores/user';
 
 const cartStore = useCartStore();
-const { totalItems, totalMoney, isEmpty, items } = storeToRefs(cartStore);
+const { totalItems, totalMoney, subTotal, isEmpty, items } = storeToRefs(cartStore);
 const { addItem, removeItem, clearCart, increaseQuantity, decreaseQuantity } = cartStore;
+
+const userStore = useUserStore();
+const { isLogin, user } = storeToRefs(userStore)
 </script>
 <template>
     <div>
         <h2>購物車測試</h2>
         <p>商品數：{{ totalItems }}</p>
-        <p>總金額：{{ totalMoney }}</p>
+        <p>總金額：
+            <span :class="{ 'text-decoration-line-through': isLogin }">{{ totalMoney }}</span>
+            <span v-if="isLogin" class="bigred">{{ subTotal }}</span>
+        </p>
         <p>是否為空：{{ isEmpty }}</p>
 
         <button class="btn btn-primary me-1"
@@ -37,4 +44,10 @@ const { addItem, removeItem, clearCart, increaseQuantity, decreaseQuantity } = c
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.bigred {
+    font-size: 60px;
+    color: #ef2424;
+    font-weight: bold;
+}
+</style>
