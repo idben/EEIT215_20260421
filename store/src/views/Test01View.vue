@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+import { useCartStore } from '@/stores/cart';
+const cartStore = useCartStore();
+</script>
 <template>
     <div>
         <h2>購物車測試</h2>
-        <p>商品數：0</p>
+        <p>商品數：{{ cartStore.totalItems }}</p>
         <p>總金額：0</p>
         <p>是否為空：true</p>
 
