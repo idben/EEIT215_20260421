@@ -28,9 +28,9 @@ const { addItem, removeItem, clearCart, increaseQuantity, decreaseQuantity } = c
             <li v-for="item in items" class="d-flex mb-1">
                 {{ item.title }} × {{ item.quantity }} = {{ item.quantity * item.price }}
                 <div class="btn-group btn-group-sm ms-auto" role="group" aria-label="Small button group">
-                    <button type="button" class="btn btn-outline-primary">-</button>
-                    <button type="button" class="btn btn-outline-primary">x</button>
-                    <button type="button" class="btn btn-outline-primary">+</button>
+                    <button @click="decreaseQuantity(item.id)" type="button" class="btn btn-outline-primary">-</button>
+                    <button @click="removeItem(item.id)" type="button" class="btn btn-outline-primary">x</button>
+                    <button @click="increaseQuantity(item.id)" type="button" class="btn btn-outline-primary">+</button>
                 </div>
             </li>
         </ul>
