@@ -12,7 +12,8 @@ const cartStore = useCartStore();
         <button class="btn btn-primary me-1">加入商品</button>
         <button class="btn btn-primary position-relative" @click="cartStore.clearCart()">
             清空
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span v-if="!cartStore.isEmpty"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ cartStore.totalItems }}
                 <span class="visually-hidden">unread messages</span>
             </span>
