@@ -1,9 +1,18 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useUserStore = defineStore("user", () => {
     const user = ref(null)
-    const isLogin = ref(false);
+    const isLogin = computed(() => user.value);
 
-    return { user, isLogin }
+    const myLogin = function () {
+        user.value = {
+            name: "Lucas Carr",
+            img: "https://randomuser.me/api/portraits/men/68.jpg"
+        }
+    }
+
+    const youLogout = () => user.value = null;
+
+    return { user, isLogin, login: myLogin, logout: youLogout }
 });
