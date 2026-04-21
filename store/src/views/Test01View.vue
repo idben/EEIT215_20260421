@@ -13,7 +13,9 @@ const cartStore = useCartStore();
         <button class="btn btn-primary">清空</button>
 
         <ul>
-            <li>測試商品 × 1 = 100</li>
+            <li v-for="item in cartStore.items">
+                {{ item.title }} × {{ item.quantity }} = {{ item.quantity * item.price }}
+            </li>
         </ul>
     </div>
 </template>
