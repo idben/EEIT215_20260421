@@ -40,5 +40,9 @@ export const useCartStore = defineStore("cart", () => {
 
     const isEmpty = computed(() => items.value.length === 0)
 
-    return { items, totalItems, totalMoney, isEmpty }
+    const clearCart = () => {
+        items.value = [];
+    }
+
+    return { items, totalItems, totalMoney, isEmpty, clearCart }
 });
