@@ -16,14 +16,15 @@ const articles = ref([
         <h1>文章列表</h1>
         <!-- 文章卡片迴圈 -->
         <div class="card mb-3" v-for="article in articles">
-            <div class="card-header">
+            <div class="card-header bg-white border-bottom-0">
                 <h3>{{ article.title }}</h3>
             </div>
             <div class="card-body">
                 <p>{{ article.summary }}</p>
             </div>
-            <div class="card-footer d-flex">
-                <RouterLink :to="{ name: ArticleDetail, params: { id: article.id } }" class="btn btn-primary ms-auto">閱讀更多
+            <div class="card-footer d-flex bg-white border-top-0">
+                <RouterLink :to="{ name: ArticleDetail, params: { id: article.id } }" class="btn btn-primary ms-auto">
+                    閱讀更多
                 </RouterLink>
             </div>
         </div>
