@@ -9,7 +9,8 @@ const cartStore = useCartStore();
         <p>總金額：{{ cartStore.totalMoney }}</p>
         <p>是否為空：{{ cartStore.isEmpty }}</p>
 
-        <button class="btn btn-primary me-1">加入商品</button>
+        <button class="btn btn-primary me-1"
+            @click="cartStore.addItem({ id: 9, title: '橘子', price: 2000, quantity: 5 })">加入商品</button>
         <button class="btn btn-primary position-relative" @click="cartStore.clearCart()">
             清空
             <span v-if="!cartStore.isEmpty"

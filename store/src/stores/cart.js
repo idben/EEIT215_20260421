@@ -49,7 +49,12 @@ export const useCartStore = defineStore("cart", () => {
         if (existing) {
             existing.quantity++
         } else {
-            items.value.push({ ...product, quantity: 1 })
+            if (product.quantity) {
+                items.value.push({ ...product })
+            } else {
+                items.value.push({ ...product, quantity: 1 })
+            }
+
         }
     }
 
