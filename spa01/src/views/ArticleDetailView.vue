@@ -14,7 +14,11 @@ watch(() => props.id, (newID, oldID) => {
 })
 </script>
 <template>
-    <h1>閱讀文章</h1>
+    <div class="d-flex align-items-center">
+        <h1>閱讀文章</h1>
+        <button class="btn btn-primary btn-sm">回上一頁</button>
+    </div>
+
     <p>這是文章 {{ id }} 的內容</p>
 </template>
 <style scoped></style>

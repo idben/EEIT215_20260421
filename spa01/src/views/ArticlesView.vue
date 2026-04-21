@@ -23,7 +23,7 @@ const articles = ref([
                 <p>{{ article.summary }}</p>
             </div>
             <div class="card-footer d-flex bg-white border-top-0">
-                <RouterLink :to="{ name: ArticleDetail, params: { id: article.id } }" class="btn btn-primary ms-auto">
+                <RouterLink :to="{ name: 'ArticleDetail', params: { id: article.id } }" class="btn btn-primary ms-auto">
                     閱讀更多
                 </RouterLink>
             </div>

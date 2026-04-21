@@ -20,6 +20,6 @@ import Footer from './components/Footer.vue';
 </template>
 <style scoped>
 main .card {
-  height: calc(100vh - 64px - 40px);
+  min-height: calc(100vh - 64px - 40px);
 }
 </style>
