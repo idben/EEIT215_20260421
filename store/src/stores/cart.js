@@ -32,5 +32,13 @@ export const useCartStore = defineStore("cart", () => {
         }, 0);
     });
 
-    return { items, totalItems }
+    const totalMoney = computed(() => {
+        return items.value.reduce((sum, item) => {
+            return sum + item.quantity * item.price
+        }, 0);
+    });
+
+    const isEmpty = computed(() => items.value.length === 0)
+
+    return { items, totalItems, totalMoney, isEmpty }
 });
