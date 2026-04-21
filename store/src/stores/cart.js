@@ -44,5 +44,30 @@ export const useCartStore = defineStore("cart", () => {
         items.value = [];
     }
 
-    return { items, totalItems, totalMoney, isEmpty, clearCart }
+    function addItem(product) {
+        const existing = items.value.find(i => i.id === product.id)
+        if (existing) {
+            existing.quantity++
+        } else {
+            items.value.push({ ...product, quantity: 1 })
+        }
+    }
+
+    function removeItem(productId) {
+        const index = items.value.findIndex(i => i.id === productId)
+        if (index > -1) items.value.splice(index, 1)
+    }
+
+    function increaseQuantity(productId) {
+        const item = items.value.find(i => i.id === productId)
+        if (item) item.quantity++
+    }
+
+    function decreaseQuantity(productId) {
+        const item = items.value.find(i => i.id === productId)
+        if (item && item.quantity > 1) item.quantity--
+    }
+
+
+    return { items, totalItems, totalMoney, isEmpty, clearCart, addItem, removeItem, increaseQuantity, decreaseQuantity }
 });
