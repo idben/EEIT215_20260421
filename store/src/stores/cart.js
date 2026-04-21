@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from "pinia";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useUserStore } from "./user";
 
 
@@ -31,8 +31,8 @@ export const useCartStore = defineStore("cart", () => {
 
 
 
-
-    const items = ref([
+    const savedCart = localStorage.getItem("cart0001");
+    const items = ref(savedCart ? JSON.parse(savedCart) : [
         {
             id: 1,
             title: "蘋果",
@@ -107,6 +107,13 @@ export const useCartStore = defineStore("cart", () => {
         if (item && item.quantity > 1) item.quantity--
     }
 
+    watch(
+        items,
+        (newItems) => {
+            localStorage.setItem("cart0001", JSON.stringify(newItems));
+        },
+        { deep: true }
+    );
 
     return { items, totalItems, totalMoney, subTotal, isEmpty, clearCart, addItem, removeItem, increaseQuantity, decreaseQuantity }
 });
