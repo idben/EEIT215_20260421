@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from 'vue-router';
+</script>
 <template>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" href="#">Link</a>
+            <RouterLink class="nav-link" to="/test01">Link</RouterLink>
         </li>
     </ul>
 </template>
